@@ -1,0 +1,5 @@
+
+	<!-- Load Tween -->
+	<script src="https://code.createjs.com/1.0.0/tweenjs.min.js"></script>
+	<!-- Load Easal -->
+	<script src="https://code.createjs.com/1.0.0/easeljs.min.js"></script>

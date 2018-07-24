@@ -1,0 +1,16 @@
+Branch DEV1:
+
+This branch is being used to test some technologies to see what would work the best.
+
+Technologies to test:
+- React.js (components and organization)
+- Easel.js (Canvas tools)
+- Tween.js (animation tools)
+
+Design Schemes to consider:
+Prototyping
+OOP
+
+Current State:
+Using `Next` as it is a static site generator for react components. Plan is to use these components to create the the graphical elements.
+
