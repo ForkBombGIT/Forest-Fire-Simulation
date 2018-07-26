@@ -4,26 +4,36 @@ import ReactDOM from 'react-dom'
 export default class Canvas extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {date: new Date(), id: props.canvas};
+    this.state = {
+      date: new Date(),
+      int: 0,
+      canvas: null
+    };
   }
 
   componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
+    this.state.timerID = setInterval(
+      () => this.update(),
       1000
     );
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerID);
+    clearInterval(this.state.timerID);
   }
-<<<<<<< HEAD
 
-  tick() {
+  update() {
     this.setState({
-      date: new Date()
+      date: new Date(),
+      canvas: this.refs.canvas
     });
-    render();
+
+    const ctx = this.state.canvas.getContext("2d")
+    
+    this.state.int += 1;
+    ctx.moveTo(this.state.int, 0);
+    ctx.lineTo(200, 100);
+    ctx.stroke();
   }
 
   render() {
@@ -31,115 +41,10 @@ export default class Canvas extends React.Component {
       <div>
         <h1>{this.state.id}</h1>
         <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+        <div>
+           {this.props.render()}
+       </div>
       </div>
     );
   }
 }
-
-/*
-export default class Canvas extends React.Component {
-  constructor (props) {
-    super(props);this.state = {date: new Date()}
-  }
-
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  tick() {
-    console.log("hi");
-    this.setState({
-      date: new date()
-    });
-  }
-
-  render () {
-    return (
-      <div>
-        <h1>hello, world {this.state.date.toLocaleTimeString()}</h1>\
-        <canvas />
-      </div>
-    )
-  }
-}
-
-ReactDOM.render(
-  <Canvas />,
-  document.getElementById('root')
-);
-
-*/
-
-/*
-ReactDOM.render(
-  <Canvas />,
-  document.getElementById('root')
-);
-
-
-function update(props) {
-  var c = document.getElementById(props.id);
-  var ctx = c.getContext("2d");
-  ctx.moveTo(0, 0);
-  ctx.lineTo(200, 100);
-  ctx.stroke();
-}
-
-=======
-  
-  componentDidMount () {
-    this.update();
-  }
-  
-  render() {
-        return (
-             <div>
-                {this.props.render()}
-            </div>
-        );
-    }
-  
-  update() {
-    const canvas = this.refs.canvas
-    const ctx = canvas.getContext("2d")
-    ctx.moveTo(0, 0);
-    ctx.lineTo(200, 100);
-    ctx.stroke();
-  }
-}
-
->>>>>>> master
-//setInterval(update, 1000);
-
-
-const layoutStyle = {
-
-}
-
-const Canvas = (props) => (
-  <div style={layoutStyle}>
-    <canvas id="myCanvas" width="100%" height="100"></canvas>
-  </div>
-)
-
-function generate() {
-  var c = document.getElementById("myCanvas");
-  var ctx = c.getContext("2d");
-  ctx.moveTo(0, 0);
-  ctx.lineTo(200, 100);
-  ctx.stroke();
-}
-componentDidMount() {
-    console.log('GrandChild did mount.');
-}
-setInterval(generate, 1000);
-
-export default Canvas
-*/
