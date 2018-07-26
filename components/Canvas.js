@@ -2,6 +2,41 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 export default class Canvas extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date(), id: props.canvas};
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      date: new Date()
+    });
+    render();
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>{this.state.id}</h1>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+
+/*
+export default class Canvas extends React.Component {
   constructor (props) {
     super(props);this.state = {date: new Date()}
   }
@@ -33,6 +68,13 @@ export default class Canvas extends React.Component {
     )
   }
 }
+
+ReactDOM.render(
+  <Canvas />,
+  document.getElementById('root')
+);
+
+*/
 
 /*
 ReactDOM.render(
