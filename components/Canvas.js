@@ -1,19 +1,48 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 
 export default class Canvas extends React.Component {
   constructor (props) {
-    super(props);
+    super(props);this.state = {date: new Date()}
   }
-  componentDidMount () {
-    update();
+
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
   }
-  render() {
-    return <p>hi</p>
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    console.log("hi");
+    this.setState({
+      date: new date()
+    });
+  }
+
+  render () {
+    return (
+      <div>
+        <h1>hello, world {this.state.date.toLocaleTimeString()}</h1>\
+        <canvas />
+      </div>
+    )
   }
 }
 
-function update() {
-  var c = document.getElementById("myCanvas");
+/*
+ReactDOM.render(
+  <Canvas />,
+  document.getElementById('root')
+);
+
+
+function update(props) {
+  var c = document.getElementById(props.id);
   var ctx = c.getContext("2d");
   ctx.moveTo(0, 0);
   ctx.lineTo(200, 100);
@@ -22,7 +51,7 @@ function update() {
 
 //setInterval(update, 1000);
 
-/*
+
 const layoutStyle = {
 
 }
