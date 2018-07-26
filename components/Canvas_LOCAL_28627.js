@@ -17,7 +17,6 @@ export default class Canvas extends React.Component {
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
-<<<<<<< HEAD
 
   tick() {
     this.setState({
@@ -92,30 +91,6 @@ function update(props) {
   ctx.stroke();
 }
 
-=======
-  
-  componentDidMount () {
-    this.update();
-  }
-  
-  render() {
-        return (
-             <div>
-                {this.props.render()}
-            </div>
-        );
-    }
-  
-  update() {
-    const canvas = this.refs.canvas
-    const ctx = canvas.getContext("2d")
-    ctx.moveTo(0, 0);
-    ctx.lineTo(200, 100);
-    ctx.stroke();
-  }
-}
-
->>>>>>> master
 //setInterval(update, 1000);
 
 
