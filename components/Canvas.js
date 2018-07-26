@@ -4,20 +4,26 @@ export default class Canvas extends React.Component {
   constructor (props) {
     super(props);
   }
+  
   componentDidMount () {
-    update();
+    this.update();
   }
+  
   render() {
-    return <p>hi</p>
+        return (
+             <div>
+                {this.props.render()}
+            </div>
+        );
+    }
+  
+  update() {
+    const canvas = this.refs.canvas
+    const ctx = canvas.getContext("2d")
+    ctx.moveTo(0, 0);
+    ctx.lineTo(200, 100);
+    ctx.stroke();
   }
-}
-
-function update() {
-  var c = document.getElementById("myCanvas");
-  var ctx = c.getContext("2d");
-  ctx.moveTo(0, 0);
-  ctx.lineTo(200, 100);
-  ctx.stroke();
 }
 
 //setInterval(update, 1000);
