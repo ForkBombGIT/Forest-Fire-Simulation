@@ -14,7 +14,7 @@ export default class Canvas extends React.Component {
   componentDidMount() {
     this.state.timerID = setInterval(
       () => this.update(),
-      1000
+      60
     );
   }
 
@@ -28,11 +28,12 @@ export default class Canvas extends React.Component {
       canvas: this.refs.canvas
     });
 
-    const ctx = this.state.canvas.getContext("2d")
-    
-    this.state.int += 1;
+    const ctx = this.state.canvas.getContext("2d");
+    this.state.canvas.width = this.state.canvas.offsetWidth;
+
+    this.state.int += 3;
     ctx.moveTo(this.state.int, 0);
-    ctx.lineTo(200, 100);
+    ctx.lineTo(this.state.canvas.offsetWidth/2, 100);
     ctx.stroke();
   }
 
