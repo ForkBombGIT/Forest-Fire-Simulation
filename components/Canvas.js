@@ -1,5 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Grid from './Grid'
+import DataModel from './DataModel'
 
 export default class Canvas extends React.Component {
   constructor(props) {
