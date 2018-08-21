@@ -7,9 +7,8 @@ export default class Canvas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: new Date(),
-      int: 0,
-      canvas: null
+      canvas: this.refs.canvaso,
+      into: 0
     };
   }
 
@@ -18,6 +17,7 @@ export default class Canvas extends React.Component {
       () => this.update(),
       60
     );
+    this.refs.canvaso.width = this.refs.canvaso.offsetWidth;
   }
 
   componentWillUnmount() {
@@ -27,14 +27,15 @@ export default class Canvas extends React.Component {
   update() {
     this.setState({
       date: new Date(),
-      canvas: this.refs.canvas
+      canvas: this.refs.canvaso,
+      into: this.state.into + 1
     });
 
     const ctx = this.state.canvas.getContext("2d");
     this.state.canvas.width = this.state.canvas.offsetWidth;
 
-    this.state.int += 3;
-    ctx.moveTo(this.state.int, 0);
+  //  this.state.int += 3;
+    ctx.moveTo(this.state.into, 0);
     ctx.lineTo(this.state.canvas.offsetWidth/2, 100);
     ctx.stroke();
   }
@@ -42,11 +43,8 @@ export default class Canvas extends React.Component {
   render() {
     return (
       <div>
-        <h1>{this.state.id}</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-        <div>
-           {this.props.render()}
-       </div>
+        <h1>{this.state.into}</h1>
+        <canvas ref="canvaso" style={{width: '100%', height: '100%'}}></canvas>
       </div>
     );
   }
