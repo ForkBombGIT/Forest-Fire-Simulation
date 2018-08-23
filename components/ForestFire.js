@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Canvas from './Canvas.js'
 //import grid from './Grid'
 //import DataModel from './DataModel'
 
-export default class Canvas extends React.Component {
+export default class ForestFire extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +15,7 @@ export default class Canvas extends React.Component {
   componentDidMount() {
     this.state.timerID = setInterval(
       () => this.update(),
-      60
+      600
     );
   }
 
@@ -38,7 +39,7 @@ export default class Canvas extends React.Component {
   render() {
     return (
       <div>
-        <h1>{this.state.currentTick}</h1>
+        <Canvas currentTimer={this.state.currentTick} />
       </div>
     );
   }

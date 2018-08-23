@@ -1,49 +1,42 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Grid from './Grid'
-import DataModel from './DataModel'
 
 export default class Canvas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      canvas: this.refs.canvaso,
       into: 0
     };
   }
 
   componentDidMount() {
-    this.state.timerID = setInterval(
-      () => this.update(),
-      60
-    );
     this.refs.canvaso.width = this.refs.canvaso.offsetWidth;
   }
 
-  componentWillUnmount() {
-    clearInterval(this.state.timerID);
+  //This has to be bound to work - probably update it later so that all the canvas editing is inside
+  update() {
+
   }
 
-  update() {
-    this.setState({
-      date: new Date(),
-      canvas: this.refs.canvaso,
-      into: this.state.into + 1
-    });
+  componentDidUpdate() {
+    if (this.props.currentTimer !== this.state.into) {
+      this.setState({
+        into: this.props.currentTimer
+      });
 
-    const ctx = this.state.canvas.getContext("2d");
-    this.state.canvas.width = this.state.canvas.offsetWidth;
+      const ctx = this.refs.canvaso.getContext("2d");
+      this.refs.canvaso.width = this.refs.canvaso.offsetWidth;
 
-  //  this.state.int += 3;
-    ctx.moveTo(this.state.into, 0);
-    ctx.lineTo(this.state.canvas.offsetWidth/2, 100);
-    ctx.stroke();
+      ctx.moveTo(this.state.into, 0);
+      ctx.lineTo(this.refs.canvaso.offsetWidth/2, 100);
+      ctx.stroke();
+    }
   }
 
   render() {
     return (
       <div>
-        <h1>{this.state.into}</h1>
+        <h1>{this.props.currentTimer}</h1>
         <canvas ref="canvaso" style={{width: '100%', height: '100%'}}></canvas>
       </div>
     );
