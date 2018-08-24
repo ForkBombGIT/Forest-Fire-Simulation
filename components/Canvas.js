@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Grid from './Grid.js'
 
 export default class Canvas extends React.Component {
   constructor(props) {
@@ -11,11 +12,7 @@ export default class Canvas extends React.Component {
 
   componentDidMount() {
     this.refs.canvaso.width = this.refs.canvaso.offsetWidth;
-  }
-
-  //This has to be bound to work - probably update it later so that all the canvas editing is inside
-  update() {
-
+    console.log(this.refs.canvaso)
   }
 
   componentDidUpdate() {
@@ -23,13 +20,7 @@ export default class Canvas extends React.Component {
       this.setState({
         into: this.props.currentTimer
       });
-
-      const ctx = this.refs.canvaso.getContext("2d");
       this.refs.canvaso.width = this.refs.canvaso.offsetWidth;
-
-      ctx.moveTo(this.state.into, 0);
-      ctx.lineTo(this.refs.canvaso.offsetWidth/2, 100);
-      ctx.stroke();
     }
   }
 
@@ -37,6 +28,7 @@ export default class Canvas extends React.Component {
     return (
       <div>
         <h1>{this.props.currentTimer}</h1>
+        <Grid manipCanvas={this.refs.canvaso} />
         <canvas ref="canvaso" style={{width: '100%', height: '100%'}}></canvas>
       </div>
     );
