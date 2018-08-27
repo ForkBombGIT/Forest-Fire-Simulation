@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 export default class Grid extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -14,12 +15,10 @@ export default class Grid extends React.Component {
       this.setState({
         into: this.props.currentTimer
       });
-
-      const ctx = this.props.manipCanvas.getContext("2d");
-
-      ctx.moveTo(this.state.into, 0);
-      ctx.lineTo(this.props.manipCanvas.offsetWidth/2, 100);
-      ctx.stroke();
+      
+      this.props.context.moveTo(this.state.into, 0);
+      this.props.context.lineTo(this.props.manipCanvas.offsetWidth/2, 100);
+      this.props.context.stroke();
     }
   }
 
