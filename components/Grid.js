@@ -15,10 +15,13 @@ export default class Grid extends React.Component {
       this.setState({
         into: this.props.currentTimer
       });
-      
-      this.props.context.moveTo(this.state.into, 0);
-      this.props.context.lineTo(this.props.manipCanvas.offsetWidth/2, 100);
-      this.props.context.stroke();
+      console.log(this.props.manip.current.getContext("2d"))
+      var athing = this.props.manip.current.getContext("2d")
+      //var x = this.props.manip.getContext("2d");
+
+      athing.moveTo(this.state.into, 0);
+      athing.lineTo(athing.offsetWidth/2, 100);
+      athing.stroke();
     }
   }
 
@@ -28,17 +31,17 @@ export default class Grid extends React.Component {
   }
 
   componentDidUpdate() {
-//    if (this.props.currentTimer !== this.state.into) {
-//    this.setState({
- //       into: this.props.currentTimer
-//      });
-//    }
+    if (this.props.currentTimer !== this.state.into) {
+    this.setState({
+        into: this.props.currentTimer
+      });
+    }
   }
 
   render() {
     return (
       <div>
-        <h1>Eyy</h1>
+        <h1>{this.state.into}</h1>
       </div>
     );
   }
