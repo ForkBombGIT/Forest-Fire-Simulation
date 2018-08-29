@@ -1,7 +1,17 @@
-const Tile = (props) => (
-  <div>
-    <canvas id="myCanvas" width="100%" height="100"></canvas>
-  </div>
-)
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-export default Tile
+export default class Tile extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    console.log(this.props.context)
+  }
+
+  render() {
+    return (null);
+  }
+}

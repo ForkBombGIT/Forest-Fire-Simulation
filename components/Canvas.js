@@ -38,7 +38,8 @@ export default class Canvas extends React.Component {
       <div>
         <h1>{this.props.currentTimer}</h1>
         <canvas ref={this.canvasRef} style={{width: '100%', height: '100%'}}></canvas>
-        <Grid manip={this.canvasRef} />
+        <Grid manip={this.canvasRef}
+              timer={this.state.into}/>
       </div>
     );
   }

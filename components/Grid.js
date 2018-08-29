@@ -1,47 +1,44 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Tile from './Tile.js'
 
 export default class Grid extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      into: 0
+        timerTick: 0
     };
+    this.createGrid = this.createGrid.bind(this);
   }
 
-  componentDidMount() {
-    if (this.props.currentTimer !== this.state.into) {
+  componentWillReceiveProps(nextProp) {
+    if (this.props.timer !== this.state.timerTick) {
       this.setState({
-        into: this.props.currentTimer
+        timerTick: this.props.timer
       });
-      console.log(this.props.manip.current.getContext("2d"))
-      var athing = this.props.manip.current.getContext("2d")
-      //var x = this.props.manip.getContext("2d");
-
-      athing.moveTo(this.state.into, 0);
-      athing.lineTo(athing.offsetWidth/2, 100);
-      athing.stroke();
     }
   }
 
-  //This has to be bound to work - probably update it later so that all the canvas editing is inside
-  update() {
-
+  createGrid(width) {
   }
 
   componentDidUpdate() {
-    if (this.props.currentTimer !== this.state.into) {
-    this.setState({
-        into: this.props.currentTimer
+      this.createGrid(this.props.manip.current.width)
+  }
+
+  componentDidMount() {
+      this.setState({
+        timerTick: this.props.timer,
+        context: this.props.manip.current.getContext("2d")
       });
-    }
   }
 
   render() {
     return (
       <div>
-        <h1>{this.state.into}</h1>
+        <h1>{this.state.timerTick}</h1>
+        <Tile context={this.state.context}/>
       </div>
     );
   }
