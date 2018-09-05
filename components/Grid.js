@@ -21,6 +21,8 @@ export default class Grid extends React.Component {
   }
 
   createGrid(width) {
+    let x = ~~(width / 25);
+    console.log(x)
   }
 
   componentDidUpdate() {
@@ -29,8 +31,7 @@ export default class Grid extends React.Component {
 
   componentDidMount() {
       this.setState({
-        timerTick: this.props.timer,
-        context: this.props.manip.current.getContext("2d")
+        timerTick: this.props.timer
       });
   }
 
@@ -38,7 +39,7 @@ export default class Grid extends React.Component {
     return (
       <div>
         <h1>{this.state.timerTick}</h1>
-        <Tile context={this.state.context}/>
+        <Tile {...this.props} context={this.props.manip.current}/>
       </div>
     );
   }

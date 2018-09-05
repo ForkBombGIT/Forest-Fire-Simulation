@@ -8,7 +8,9 @@ export default class Tile extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.context)
+    console.log(this.props.manip.current.getContext("2d"))
+
+    
   }
 
   render() {
