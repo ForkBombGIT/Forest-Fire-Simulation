@@ -18,6 +18,7 @@ export default class Grid extends React.Component {
       this.setState({
         timerTick: this.props.timer
       });
+      this.props.manip.current.width = this.props.manip.current.offsetWidth;
     }
   }
 
@@ -34,6 +35,7 @@ export default class Grid extends React.Component {
       this.setState({
         timerTick: this.props.timer
       });
+      this.props.manip.current.width = this.props.manip.current.offsetWidth;
   }
 
   renderTile(i) {
