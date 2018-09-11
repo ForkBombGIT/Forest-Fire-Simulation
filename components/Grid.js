@@ -7,7 +7,8 @@ export default class Grid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        timerTick: 0
+        timerTick: 0,
+        grid: [0]
     };
     this.createGrid = this.createGrid.bind(this);
     this.renderTile = this.renderTile.bind(this);
@@ -22,13 +23,31 @@ export default class Grid extends React.Component {
     }
   }
 
-  createGrid(width) {
-    let x = ~~(width / 25);
+  createGrid(width, height) {
+    var tempArr = [];
+    let x = ~~(width / 250);
+    let y = ~~(height / 50);
+
+    for (var n = 0; n < x; n++) {
+      for (var nu = 0; nu < y; nu++) {
+          tempArr.push(width)
+      }
+    }
     console.log(x)
+    this.setState({
+        grid: tempArr
+    })
+  }
+
+  shouldComponentUpdate() {
+    if (this.props.timer !== this.state.timerTick) {
+      return true;
+    }
+    return false;
   }
 
   componentDidUpdate() {
-      this.createGrid(this.props.manip.current.width)
+      this.createGrid(this.props.manip.current.width, this.props.manip.current.width)
   }
 
   componentDidMount() {
@@ -46,7 +65,7 @@ export default class Grid extends React.Component {
     return <div>
       <h1>{this.state.timerTick}</h1>
       {
-        [1,10,30].map ((n) => {
+        (this.state.grid).map ((n) => {
           return this.renderTile(n)
         })
       }
