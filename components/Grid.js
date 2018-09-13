@@ -19,35 +19,24 @@ export default class Grid extends React.Component {
       this.setState({
         timerTick: this.props.timer
       });
+      this.createGrid(this.props.manip.current.width, this.props.manip.current.width)
       this.props.manip.current.width = this.props.manip.current.offsetWidth;
     }
   }
 
   createGrid(width, height) {
     var tempArr = [];
-    let x = ~~(width / 250);
+    let x = ~~(width / 100);
     let y = ~~(height / 50);
 
     for (var n = 0; n < x; n++) {
-      for (var nu = 0; nu < y; nu++) {
-          tempArr.push(width)
-      }
+    //  for (var nu = 0; nu < y; nu++) {
+          tempArr.push(100 * n)
+    //  }
     }
-    console.log(x)
     this.setState({
         grid: tempArr
     })
-  }
-
-  shouldComponentUpdate() {
-    if (this.props.timer !== this.state.timerTick) {
-      return true;
-    }
-    return false;
-  }
-
-  componentDidUpdate() {
-      this.createGrid(this.props.manip.current.width, this.props.manip.current.width)
   }
 
   componentDidMount() {
@@ -58,7 +47,7 @@ export default class Grid extends React.Component {
   }
 
   renderTile(i) {
-      return <Tile {...this.props} startPos={i}/>
+      return <Tile {...this.props} key={i} startPos={i}/>
   }
 
   render() {
