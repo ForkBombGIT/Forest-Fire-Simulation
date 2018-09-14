@@ -19,7 +19,7 @@ export default class Grid extends React.Component {
       this.setState({
         timerTick: this.props.timer
       });
-      this.createGrid(this.props.manip.current.width, this.props.manip.current.width)
+      this.createGrid(this.props.manip.current.width, this.props.manip.current.height)
       this.props.manip.current.width = this.props.manip.current.offsetWidth;
     }
   }
