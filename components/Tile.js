@@ -17,9 +17,9 @@ export default class Tile extends React.Component {
       });
     var ctx = this.props.manip.current.getContext("2d")
 
-    ctx.beginPath();
-    ctx.moveTo(this.props.startPos, this.props.timer*5);
-    ctx.lineTo(300,150);
+    ctx.fillStyle = "red";
+    ctx.fill();
+    ctx.rect(this.props.startPos[0], this.props.startPos[1], this.props.startPos[2],50);
     ctx.stroke();
     }
   }

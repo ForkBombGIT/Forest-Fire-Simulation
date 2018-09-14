@@ -15,7 +15,7 @@ export default class ForestFire extends React.Component {
   componentDidMount() {
     this.state.timerID = setInterval(
       () => this.update(),
-      300
+      500
     );
   }
 

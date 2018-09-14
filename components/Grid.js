@@ -26,14 +26,15 @@ export default class Grid extends React.Component {
 
   createGrid(width, height) {
     var tempArr = [];
-    let x = ~~(width / 100);
-    let y = ~~(height / 50);
+    let x = ~~(width / 300);
+    let y = ~~(height / 100);
 
-    for (var n = 0; n < x; n++) {
-    //  for (var nu = 0; nu < y; nu++) {
-          tempArr.push(100 * n)
-    //  }
+    for (var h = 0; h < x; h++) {
+      for (var w = 0; w < y; w++) {
+          tempArr.push([(width/x) * h, 50 * w, width/x])
+      }
     }
+    console.log(tempArr)
     this.setState({
         grid: tempArr
     })
