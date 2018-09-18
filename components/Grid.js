@@ -15,19 +15,18 @@ export default class Grid extends React.Component {
   }
 
   componentWillReceiveProps(nextProp) {
-    if (this.props.timer !== this.state.timerTick) {
+    if (this.props.currentTimer !== this.state.timerTick) {
       this.setState({
-        timerTick: this.props.timer
+        timerTick: this.props.currentTimer
       });
       this.createGrid(this.props.manip.current.width, this.props.manip.current.width)
-      this.props.manip.current.width = this.props.manip.current.offsetWidth;
     }
   }
 
   createGrid(width, height) {
     var tempArr = [];
-    let x = ~~(width / 300);
-    let y = ~~(height / 100);
+    let x = ~~(width / 500);
+    let y = ~~(height / 300);
 
     for (var h = 0; h < x; h++) {
       for (var w = 0; w < y; w++) {

@@ -1,45 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Canvas from './Canvas.js'
-//import grid from './Grid'
-//import DataModel from './DataModel'
+//<Grid manipCanvas={this.refs.canvaso} />
 
 export default class ForestFire extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentTick: 0
-    };
-  }
-
-  componentDidMount() {
-    this.state.timerID = setInterval(
-      () => this.update(),
-      500
-    );
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.state.timerID);
-  }
-
-  update() {
-    if (this.state.currentTick === 60) {
-      this.setState({
-        currentTick: 0
-      });
-    }
-    else {
-      this.setState({
-        currentTick: this.state.currentTick + 1
-      });
-    }
+    this.canvasRef = React.createRef();
   }
 
   render() {
     return (
       <div>
-        <Canvas currentTimer={this.state.currentTick} />
+        <canvas ref={this.canvasRef} style={{width: '100%', height: '100%'}}></canvas>
+        <Canvas manip={this.canvasRef}/>
       </div>
     );
   }
