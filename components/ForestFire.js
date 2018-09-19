@@ -4,7 +4,7 @@ import Canvas from './Canvas.js'
 //<Grid manipCanvas={this.refs.canvaso} />
 
 export default class ForestFire extends React.Component {
-  constructor(props) {
+ constructor(props) {
     super(props);
     this.canvasRef = React.createRef();
   }
@@ -12,7 +12,7 @@ export default class ForestFire extends React.Component {
   render() {
     return (
       <div>
-        <canvas ref={this.canvasRef} style={{width: '100%', height: '100%'}}></canvas>
+        <canvas ref={this.canvasRef} style={{width: '100%', height: "250px"}}></canvas>
         <Canvas manip={this.canvasRef}/>
       </div>
     );

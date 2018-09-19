@@ -5,19 +5,19 @@ import Grid from './Grid.js'
 //import DataModel from './DataModel'
 
 export default class Canvas extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      currentTick: 0
+      currentTick: -1
     };
   }
 
   componentDidMount() {
     this.state.timerID = setInterval(
       () => this.update(),
-      500
+      200
     );
+    //this.update()
   }
 
   componentWillUnmount() {
