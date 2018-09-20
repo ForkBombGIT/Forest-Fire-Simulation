@@ -8,14 +8,14 @@ export default class Canvas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTick: -1
+      currentTick: 0
     };
   }
 
   componentDidMount() {
     this.state.timerID = setInterval(
       () => this.update(),
-      200
+      400
     );
     //this.update()
   }

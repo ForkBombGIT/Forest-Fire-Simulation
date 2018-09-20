@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 export default class Tile extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -35,4 +34,5 @@ export default class Tile extends React.Component {
 
   render() {
     return (null);
-  }}
+  }
+}
