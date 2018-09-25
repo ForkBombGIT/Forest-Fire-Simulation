@@ -1,12 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-export default class Tile extends React.Component {
+export default class Tile extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      into: 2
-    };
+    this.timerTick = 1;
   }
   componentDidMount() {
     var ctx = this.props.manip.current.getContext("2d")
@@ -17,10 +15,8 @@ export default class Tile extends React.Component {
     ctx.stroke();
   }
   componentWillReceiveProps(nextProp) {
-    if (this.props.currentTimer !== this.state.timerTick) {
-      this.setState({
-        into: this.props.timer
-      });
+    if (this.props.currentTimer !== this.timerTick) {
+    this.timerTick = this.props.timer
     var ctx = this.props.manip.current.getContext("2d")
 
 		ctx.beginPath()
