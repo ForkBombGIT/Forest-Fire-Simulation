@@ -3,25 +3,33 @@ import ReactDOM from 'react-dom'
 import Tile from './Tile.js'
 
 export default class Grid extends React.PureComponent {
+
   constructor(props) {
     super(props);
     this.grid = []
     this.timerTick = 0;
+    this.dimensions = []
     this.createGrid = this.createGrid.bind(this);
     this.renderTile = this.renderTile.bind(this);
+    this.update = this.update.bind(this);
   }
 
   componentWillUpdate() {
-  	//Only run this on resizing - currently runs on every timer update
-  	this.props.manip.current.width = this.props.manip.current.offsetWidth;
-    this.props.manip.current.height = this.props.manip.current.offsetHeight;
-    //console.log(this.props)
-    this.createGrid(this.props.manip.current.width, this.props.manip.current.height)
+  	  this.props.manip.current.width = this.props.manip.current.offsetWidth;
+   		this.props.manip.current.height = this.props.manip.current.offsetHeight;
+
+    if (this.props.manip.current.width !== this.dimensions[0] || this.props.manip.current.height !== this.dimensions[1]) {
+    console.log("redrawing grid")
+   		//console.log(this.props)
+      this.dimensions = [this.props.manip.current.width, this.props.manip.current.height]
+   		this.createGrid(this.props.manip.current.width, this.props.manip.current.height)
+    }
   }
 
   componentDidMount() {
   	this.props.manip.current.width = this.props.manip.current.offsetWidth;
     this.props.manip.current.height = this.props.manip.current.offsetHeight;
+    this.dimensions = [this.props.manip.current.width, this.props.manip.current.height]
   	this.createGrid(this.props.manip.current.width, this.props.manip.current.height)
     this.forceUpdate()
   }
@@ -37,6 +45,10 @@ export default class Grid extends React.PureComponent {
       }
     }
     this.grid = tempArr;
+  }
+
+  update() {
+
   }
 
   renderTile(i) {
