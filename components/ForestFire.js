@@ -13,7 +13,7 @@ export default class ForestFire extends React.Component {
     return (
       <div>
         <canvas ref={this.canvasRef} style={{width: '100%', height: "250px"}}></canvas>
-        <Canvas manip={this.canvasRef}/>
+        <Canvas canvRef={this.canvasRef}/>
       </div>
     );
   }

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import Tile from './Tile.js'
 
 export default class Grid extends React.PureComponent {
-
   constructor(props) {
     super(props);
     this.grid = []
@@ -15,22 +14,22 @@ export default class Grid extends React.PureComponent {
   }
 
   componentWillUpdate() {
-  	  this.props.manip.current.width = this.props.manip.current.offsetWidth;
-   		this.props.manip.current.height = this.props.manip.current.offsetHeight;
+  	  this.props.canvRef.current.width = this.props.canvRef.current.offsetWidth;
+   		this.props.canvRef.current.height = this.props.canvRef.current.offsetHeight;
 
-    if (this.props.manip.current.width !== this.dimensions[0] || this.props.manip.current.height !== this.dimensions[1]) {
+    if (this.props.canvRef.current.width !== this.dimensions[0] || this.props.canvRef.current.height !== this.dimensions[1]) {
     console.log("redrawing grid")
    		//console.log(this.props)
-      this.dimensions = [this.props.manip.current.width, this.props.manip.current.height]
-   		this.createGrid(this.props.manip.current.width, this.props.manip.current.height)
+      this.dimensions = [this.props.canvRef.current.width, this.props.canvRef.current.height]
+   		this.createGrid(this.props.canvRef.current.width, this.props.canvRef.current.height)
     }
   }
 
   componentDidMount() {
-  	this.props.manip.current.width = this.props.manip.current.offsetWidth;
-    this.props.manip.current.height = this.props.manip.current.offsetHeight;
-    this.dimensions = [this.props.manip.current.width, this.props.manip.current.height]
-  	this.createGrid(this.props.manip.current.width, this.props.manip.current.height)
+  	this.props.canvRef.current.width = this.props.canvRef.current.offsetWidth;
+    this.props.canvRef.current.height = this.props.canvRef.current.offsetHeight;
+    this.dimensions = [this.props.canvRef.current.width, this.props.canvRef.current.height]
+  	this.createGrid(this.props.canvRef.current.width, this.props.canvRef.current.height)
     this.forceUpdate()
   }
 

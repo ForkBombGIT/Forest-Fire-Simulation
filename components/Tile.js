@@ -9,7 +9,7 @@ export default class Tile extends React.PureComponent {
     }
 
     drawRectangle(colour) {
-      var ctx = this.props.manip.current.getContext("2d")
+      var ctx = this.props.canvRef.current.getContext("2d")
       ctx.beginPath()
       ctx.fillStyle = colour;
       ctx.rect(this.props.startPos[0], this.props.startPos[1], 		this.props.startPos[2],50);
