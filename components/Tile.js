@@ -17,6 +17,7 @@ export default class Tile extends React.PureComponent {
       ctx.stroke();
     }
 
+
     componentDidMount() {
 			this.drawRectangle("red")
     }
@@ -27,6 +28,8 @@ export default class Tile extends React.PureComponent {
 			this.drawRectangle("red")
   	}
   }
+
+
   render() {
     return (null);
   }
