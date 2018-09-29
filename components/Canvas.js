@@ -15,9 +15,8 @@ export default class Canvas extends React.Component {
   componentDidMount() {
     this.state.timerID = setInterval(
       () => this.update(),
-      400
+      50
     );
-    //this.update()
   }
 
   componentWillUnmount() {
