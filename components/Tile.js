@@ -16,10 +16,10 @@ export default class Tile extends React.PureComponent {
     var ctx = this.props.canvRef.current.getContext("2d")
     ctx.beginPath()
 
-    ctx.fillStyle = this.stateColour[this.props.startPos[3]];
-    ctx.rect(this.props.startPos[0], this.props.startPos[1], this.props.startPos[2], 50);
+    ctx.rect(this.props.tileData.startPosX, this.props.tileData.startPosY, this.props.tileData.tileWidth, this.props.tileData.tileHeight);
+    //ctx.fillStyle = this.stateColour[this.props.tileData.tileState];
     ctx.fill();
-    ctx.strokeStyle = this.stateColour[this.props.startPos[3]];
+    ctx.strokeStyle = this.stateColour[this.props.tileData.tileState];
     ctx.stroke();
   }
 
@@ -37,5 +37,4 @@ export default class Tile extends React.PureComponent {
 
   render() {
     return (null);
-  }
-}
+  }}

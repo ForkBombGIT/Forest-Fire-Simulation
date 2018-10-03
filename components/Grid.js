@@ -10,7 +10,7 @@ export default class Grid extends React.PureComponent {
     this.timerTick = 0;
     this.gridData = {
     		canvasSize: {},
-        probTree: 0.99,
+        probTree: 0.995,
         probBurn: 0.001,
 
     }
@@ -54,11 +54,22 @@ export default class Grid extends React.PureComponent {
     for (var w = 0; w < y; w++) {
       for (var h = 0; h < x; h++) {
         if (prevArr[w][h] == undefined) {
-          tempArr.push([(width / x) * h, 50 * w, width / x, Math.random() > this.gridData.probTree ? "tree" : "empty"])
+          tempArr.push({
+          	startPosX: (width / x) * h,
+          	startPosY: (height / y) * w,
+          	tileWidth: width / x,
+          	tileHeight: height / y,
+          	tileState: Math.random() > this.gridData.probTree ? "tree" : "empty"
+          });
         } else {
-          console.log(width / x)
-          tempArr.push([(width / x) * h, 50 * w, width / x, prevArr[w][h][3]]);
-        }
+          tempArr.push({
+         		startPosX: (width / x) * h,
+          	startPosY: (height / y) * w,
+          	tileWidth: width / x,
+          	tileHeight: height / y,
+          	tileState : prevArr[w][h].tileState
+          });
+      	}
       }
       this.grid.push(tempArr)
       tempArr = []
@@ -66,22 +77,23 @@ export default class Grid extends React.PureComponent {
   };
 
   update = () => {
+  //console.log(this.grid)
     let prevArray = JSON.parse(JSON.stringify(this.grid));
 
     for (var w = 0; w < this.grid.length; w++) {
       for (var h = 0; h < this.grid[w].length; h++) {
-        if (prevArray[w][h][3] == "empty") {
-          Math.random() > this.gridData.probTree ? this.grid[w][h][3] = "tree" : this.grid[w][h][3] = "empty";
-        } else if (prevArray[w][h][3] == "tree") {
-          if ((w > 0) && (prevArray[w - 1][h][3] == "fire") ||
-            (w < prevArray.length - 1) && (prevArray[w + 1][h][3] == "fire") ||
-            (h > 0) && (prevArray[w][h - 1][3] == "fire") ||
-            (h < prevArray[w].length - 1) && (prevArray[w][h + 1][3] == "fire")) {
-            this.grid[w][h][3] = "fire"
+        if (prevArray[w][h].tileState == "empty") {
+          Math.random() > this.gridData.probTree ? this.grid[w][h].tileState = "tree" : this.grid[w][h].tileState = "empty";
+        } else if (prevArray[w][h].tileState == "tree") {
+          if ((w > 0) && (prevArray[w - 1][h].tileState == "fire") ||
+            (w < prevArray.length - 1) && (prevArray[w + 1][h].tileState == "fire") ||
+            (h > 0) && (prevArray[w][h - 1].tileState == "fire") ||
+            (h < prevArray[w].length - 1) && (prevArray[w][h + 1].tileState == "fire")) {
+            this.grid[w][h].tileState = "fire"
           } else {
-            if (Math.random() < this.gridData.probBurn) this.grid[w][h][3] = "fire";
+            if (Math.random() < this.gridData.probBurn) this.grid[w][h].tileState = "fire";
           }
-        } else if (prevArray[w][h][3] == "fire") this.grid[w][h][3] = "empty"
+        } else if (prevArray[w][h].tileState == "fire") this.grid[w][h].tileState = "empty"
       }
     }
   }
@@ -96,17 +108,24 @@ export default class Grid extends React.PureComponent {
 
     for (var w = 0; w < y; w++) {
       for (var h = 0; h < x; h++) {
-        tempArr.push([(width / x) * h, 50 * w, width / x, Math.random() > this.gridData.probTree ? "tree" : "empty"])
+        tempArr.push({
+         		startPosX: (width / x) * h,
+          	startPosY: (height / y) * w,
+          	tileWidth: width / x,
+          	tileHeight: height / y,
+          	tileState : Math.random() > this.gridData.probTree ? "tree" : "empty"
+          });
       }
       this.grid.push(tempArr)
       tempArr = []
     }
     //this.grid = tempArr;
-  };
+  }
 
   renderTile = (i) => {
     this.unique++;
-    return <Tile key = { this.unique } { ...this.props } startPos = { i } />
+    //console.log(i)
+    return <Tile key = { this.unique } { ...this.props } tileData = { i } />
   }
 
   render() {
