@@ -7,8 +7,9 @@ export default class Tile extends React.PureComponent {
     this.timerTick = 1;
     this.stateColour = {
       "tree": "green",
-      "empty": "white",
-      "fire": "red"
+      "empty": "transparent",
+      "fire": "red",
+      "weakFire" : "orange"
     };
   }
 
@@ -17,8 +18,9 @@ export default class Tile extends React.PureComponent {
     ctx.beginPath()
 
     ctx.rect(this.props.tileData.startPosX, this.props.tileData.startPosY, this.props.tileData.tileWidth, this.props.tileData.tileHeight);
-    //ctx.fillStyle = this.stateColour[this.props.tileData.tileState];
+    ctx.fillStyle = this.stateColour[this.props.tileData.tileState];
     ctx.fill();
+    //ctx.lineWidth = 2;
     ctx.strokeStyle = this.stateColour[this.props.tileData.tileState];
     ctx.stroke();
   }
@@ -37,4 +39,5 @@ export default class Tile extends React.PureComponent {
 
   render() {
     return (null);
-  }}
+  }
+}

@@ -10,7 +10,7 @@ export default class Grid extends React.PureComponent {
     this.timerTick = 0;
     this.gridData = {
     		canvasSize: {},
-        probTree: 0.995,
+        probTree: 0.99,
         probBurn: 0.001,
 
     }
@@ -84,16 +84,26 @@ export default class Grid extends React.PureComponent {
       for (var h = 0; h < this.grid[w].length; h++) {
         if (prevArray[w][h].tileState == "empty") {
           Math.random() > this.gridData.probTree ? this.grid[w][h].tileState = "tree" : this.grid[w][h].tileState = "empty";
-        } else if (prevArray[w][h].tileState == "tree") {
+        }
+        else if (prevArray[w][h].tileState == "tree") {
           if ((w > 0) && (prevArray[w - 1][h].tileState == "fire") ||
             (w < prevArray.length - 1) && (prevArray[w + 1][h].tileState == "fire") ||
             (h > 0) && (prevArray[w][h - 1].tileState == "fire") ||
             (h < prevArray[w].length - 1) && (prevArray[w][h + 1].tileState == "fire")) {
-            this.grid[w][h].tileState = "fire"
-          } else {
-            if (Math.random() < this.gridData.probBurn) this.grid[w][h].tileState = "fire";
+            	this.grid[w][h].tileState = "fire"
           }
-        } else if (prevArray[w][h].tileState == "fire") this.grid[w][h].tileState = "empty"
+          else {
+            if (Math.random() < this.gridData.probBurn) {
+            	this.grid[w][h].tileState = "fire";
+            }
+          }
+        }
+        else if (prevArray[w][h].tileState == "fire") {
+        	this.grid[w][h].tileState = "weakFire"
+        }
+        else {
+        	this.grid[w][h].tileState = "empty"
+        }
       }
     }
   }
