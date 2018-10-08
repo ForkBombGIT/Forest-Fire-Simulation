@@ -1,8 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Grid from './Grid.js'
-//import grid from './Grid'
-//import DataModel from './DataModel'
 
 export default class Canvas extends React.Component {
   constructor(props) {
@@ -39,7 +37,8 @@ export default class Canvas extends React.Component {
   render() {
     return (
       <div>
-        <h1>{this.state.currentTick}</h1>
+        //Shows the timer for the render if required
+        //<h1>{this.state.currentTick}</h1>
         <Grid {...this.props} currentTimer={this.state.currentTick} />
       </div>
     );

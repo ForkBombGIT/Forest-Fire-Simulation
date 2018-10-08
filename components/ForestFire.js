@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Canvas from './Canvas.js'
-//<Grid canvRefCanvas={this.refs.canvaso} />
 
 export default class ForestFire extends React.Component {
   constructor(props) {
