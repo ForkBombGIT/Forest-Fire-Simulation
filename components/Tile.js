@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 
 export default class Tile extends React.PureComponent {
   constructor(props) {

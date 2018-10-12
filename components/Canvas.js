@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import Grid from './Grid.js'
 
 export default class Canvas extends React.Component {
