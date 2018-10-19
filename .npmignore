@@ -2,11 +2,8 @@
 
 .git
 .next.
-components
-.babelrc
 .CONTRIBUTING.md
 next.config.js
 README.md
-webpack.config.js
 temp
 .gitignore

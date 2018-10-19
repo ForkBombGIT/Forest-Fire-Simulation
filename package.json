@@ -1,8 +1,8 @@
 {
   "name": "forestfiresim",
-  "version": "1.0.0",
+  "version": "1.0.8",
   "description": "",
-  "main": "components/ForestFire.js",
+  "main": "compnents/ForestFire.js",
   "devDependencies": {
     "@babel/core": "^7.1.0",
     "@babel/plugin-proposal-class-properties": "^7.1.0",

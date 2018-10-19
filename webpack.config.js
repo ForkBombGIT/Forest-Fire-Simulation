@@ -1,5 +1,6 @@
 module.exports = {
   entry: './components/ForestFire.js',
+  target: 'web',
   module: {
     rules: [
       {
@@ -15,9 +16,13 @@ module.exports = {
   output: {
     path: __dirname + '/dist',
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    libraryTarget: 'commonjs2'
   },
   devServer: {
     contentBase: './dist'
+  },
+  externals: {
+    'react': 'commonjs react'
   }
 };
