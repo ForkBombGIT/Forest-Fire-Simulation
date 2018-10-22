@@ -22,7 +22,4 @@ module.exports = {
   devServer: {
     contentBase: './dist'
   },
-  externals: {
-    'react': 'commonjs react'
-  }
 };
