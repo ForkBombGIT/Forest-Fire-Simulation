@@ -36,8 +36,6 @@ export default class Canvas extends React.Component {
   render() {
     return (
       <div>
-        //Shows the timer for the render if required
-        //<h1>{this.state.currentTick}</h1>
         <Grid {...this.props} currentTimer={this.state.currentTick} />
       </div>
     );

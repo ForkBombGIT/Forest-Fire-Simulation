@@ -17,7 +17,7 @@ export default class Tile extends React.PureComponent {
     ctx.beginPath()
 
     ctx.rect(this.props.tileData.startPosX, this.props.tileData.startPosY, this.props.tileData.tileWidth, this.props.tileData.tileHeight);
-    ctx.fillStyle = this.stateColour[this.props.tileData.tileState];
+    ctx.fillStyle = "black";
     ctx.fill();
     //ctx.lineWidth = 2;
     ctx.strokeStyle = this.stateColour[this.props.tileData.tileState];
