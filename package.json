@@ -1,8 +1,8 @@
 {
   "name": "forestfiresim",
-  "version": "1.0.10",
+  "version": "1.1.0",
   "description": "",
-  "main": "compnents/ForestFire.js",
+  "main": "ForestFire.js",
   "devDependencies": {
     "@babel/core": "^7.1.0",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
@@ -13,7 +13,7 @@
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.8"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
   },
@@ -24,12 +24,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ForkBombGIT/ForestFireSimulation.git"
+    "url": "git+https://github.com/Liannus/ForestFireSimulation.git"
   },
   "author": "Josh Gorman & Eros Dipede",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ForkBombGIT/ForestFireSimulation/issues"
+    "url": "https://github.com/Liannus/ForestFireSimulation/issues"
   },
-  "homepage": "https://github.com/ForkBombGIT/ForestFireSimulation#readme"
+  "homepage": "https://github.com/Liannus/ForestFireSimulation#readme"
 }
