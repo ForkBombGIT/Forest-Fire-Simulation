@@ -20,6 +20,7 @@ export default class Grid extends React.PureComponent {
     let width = this.props.canvRef.current.width
     this.props.canvRef.current.width = this.props.canvRef.current.offsetWidth;
     this.props.canvRef.current.height = this.props.canvRef.current.offsetHeight;
+    this.props.canvRef.current.getContext("2d").translate(0.5,0.5)
 
     if (this.props.canvRef.current.width !== this.gridData.canvasSize.x || this.props.canvRef.current.height !== this.gridData.canvasSize.y) {
       this.gridData.canvasSize.x = this.props.canvRef.current.width;
@@ -49,14 +50,28 @@ export default class Grid extends React.PureComponent {
     let height = this.gridData.canvasSize.y
     let x = this.gridData.numCol = ~~(width / 50);
     let y = this.gridData.numRow = ~~(height / 50);
+    var base, incr, incr2,temp, startX;
+    temp = (width/x)%1;
 
     for (var w = 0; w < y; w++) {
+      base=0;
+      incr=0;
+      incr2 = 0;
+      startX=0;
       for (var h = 0; h < x; h++) {
+        startX+=startX;
+        incr = 0;
+        base += temp;
+        if ((base%1) != base) {
+          incr2++;
+          incr=1;
+          base = base%1;
+        }
         if (prevArr[w][h] == undefined) {
           tempArr.push({
-          	startPosX: (width / x) * h,
+          	startPosX: (width/x) * h,
           	startPosY: (height / y) * w,
-          	tileWidth: width / x,
+          	tileWidth: ~~(width / x) + incr,
           	tileHeight: height / y,
           	tileState: Math.random() > this.gridData.probTree ? "tree" : "empty"
           });
@@ -64,7 +79,7 @@ export default class Grid extends React.PureComponent {
           tempArr.push({
          		startPosX: (width / x) * h,
           	startPosY: (height / y) * w,
-          	tileWidth: width / x,
+          	tileWidth: ~~(width / x) + incr,
           	tileHeight: height / y,
           	tileState : prevArr[w][h].tileState
           });
@@ -114,9 +129,19 @@ export default class Grid extends React.PureComponent {
     let height = this.gridData.canvasSize.y
     let x = this.gridData.numCol = ~~(width / 50);
     let y = this.gridData.numRow = ~~(height / 50);
+    var base = 0, incr = 0, temp = 0;
+    temp = (width/x)%1;
 
     for (var w = 0; w < y; w++) {
+      base = 0;
+      incr = 0;
       for (var h = 0; h < x; h++) {
+        base += base;
+        if ((base%1) != base) {
+          incr++;
+          base = base%1;
+          console.log(incr)
+        }
         tempArr.push({
          		startPosX: (width / x) * h,
           	startPosY: (height / y) * w,
