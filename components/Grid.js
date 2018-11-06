@@ -11,7 +11,6 @@ export default class Grid extends React.PureComponent {
     		canvasSize: {},
         probTree: 0.99,
         probBurn: 0.001,
-
     }
     this.unique = 0;
   }
@@ -25,6 +24,7 @@ export default class Grid extends React.PureComponent {
     if (this.props.canvRef.current.width !== this.gridData.canvasSize.x || this.props.canvRef.current.height !== this.gridData.canvasSize.y) {
       this.gridData.canvasSize.x = this.props.canvRef.current.width;
       this.gridData.canvasSize.y = this.props.canvRef.current.height;
+      console.log(this.gridData.canvasSize)
 
       this.createGrid()
     }
@@ -37,7 +37,7 @@ export default class Grid extends React.PureComponent {
     this.gridData.canvasSize.x = this.props.canvRef.current.width;
     this.gridData.canvasSize.y = this.props.canvRef.current.height;
 
-    this.generate()
+    this.createGrid();
     this.forceUpdate()
   }
 
@@ -50,37 +50,43 @@ export default class Grid extends React.PureComponent {
     let height = this.gridData.canvasSize.y
     let x = this.gridData.numCol = ~~(width / 50);
     let y = this.gridData.numRow = ~~(height / 50);
-    var base, incr, incr2,temp, startX;
-    temp = (width/x)%1;
+    var baseX, incrX, tempX, baseY=0, incrY=0, tempY;
+    tempX = (width/x)%1;
+    tempY = (height/y)%1;
 
     for (var w = 0; w < y; w++) {
-      base=0;
-      incr=0;
-      incr2 = 0;
-      startX=0;
+      baseX=0;
+      incrX=0;
+
+      incrY = 0;
+      baseY += tempY;
+      if ((baseY%1) != baseY) {
+        incrY=1;
+        baseY = baseY%1;
+      }
+
+      if (typeof(prevArr[w]) == 'undefined') prevArr.push([])
       for (var h = 0; h < x; h++) {
-        startX+=startX;
-        incr = 0;
-        base += temp;
-        if ((base%1) != base) {
-          incr2++;
-          incr=1;
-          base = base%1;
+        incrX = 0;
+        baseX += tempX;
+        if ((baseX%1) != baseX) {
+          incrX=1;
+          baseX = baseX%1;
         }
         if (prevArr[w][h] == undefined) {
           tempArr.push({
-          	startPosX: (width/x) * h,
-          	startPosY: (height / y) * w,
-          	tileWidth: ~~(width / x) + incr,
-          	tileHeight: height / y,
+          	startPosX: ~~((width/x) * h),
+          	startPosY: ~~((height / y) * w),
+          	tileWidth: ~~(width / x) + incrX,
+          	tileHeight: ~~(height / y) + incrY,
           	tileState: Math.random() > this.gridData.probTree ? "tree" : "empty"
           });
         } else {
           tempArr.push({
-         		startPosX: (width / x) * h,
-          	startPosY: (height / y) * w,
-          	tileWidth: ~~(width / x) + incr,
-          	tileHeight: height / y,
+          	startPosX: ~~((width/x) * h),
+          	startPosY: ~~((height / y) * w),
+          	tileWidth: ~~(width / x) + incrX,
+          	tileHeight: ~~(height / y) + incrY,
           	tileState : prevArr[w][h].tileState
           });
       	}
@@ -91,7 +97,6 @@ export default class Grid extends React.PureComponent {
   };
 
   update = () => {
-  //console.log(this.grid)
     let prevArray = JSON.parse(JSON.stringify(this.grid));
 
     for (var w = 0; w < this.grid.length; w++) {
@@ -122,6 +127,7 @@ export default class Grid extends React.PureComponent {
     }
   }
 
+  /*
   generate = () => {
     var tempArr = [];
 
@@ -155,6 +161,7 @@ export default class Grid extends React.PureComponent {
     }
     //this.grid = tempArr;
   }
+  */
 
   renderTile = (i) => {
     this.unique++;

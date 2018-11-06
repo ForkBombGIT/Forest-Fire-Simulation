@@ -18,9 +18,10 @@ export default class Tile extends React.PureComponent {
     //console.log(this.props.tileData.tileWidth)
 
 
-    ctx.rect(~~this.props.tileData.startPosX, ~~this.props.tileData.startPosY, ~~this.props.tileData.tileWidth, 10);
+    ctx.rect(this.props.tileData.startPosX, this.props.tileData.startPosY, this.props.tileData.tileWidth, this.props.tileData.tileHeight);
+    //console.log(this.props.tileData.startPosX + " - " + this.props.tileData.startPosY + " - " + this.props.tileData.tileWidth + " - " + this.props.tileData.tileHeight);
 
-    console.log(this.props.tileData.startPosX + " - " + this.props.tileData.tileWidth)
+    //console.log(this.props.tileData.startPosX + " - " + this.props.tileData.tileWidth)
 
     //ctx.rect(~~this.props.tileData.startPosX, Math.round(this.props.tileData.startPosY), Math.ceil(this.props.tileData.tileWidth), 10);
     //ctx.rect(~~this.props.tileData.startPosX, ~~this.props.tileData.startPosY,50, 10);
